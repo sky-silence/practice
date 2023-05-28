@@ -1,4 +1,4 @@
-package designPattern.singleton;
+package designPattern.creational.singleton;
 
 /**
  * The xxx class for xxx.

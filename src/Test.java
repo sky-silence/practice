@@ -1,5 +1,10 @@
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 
 /**
  * The xxx class for xxx.
@@ -10,71 +15,32 @@ import java.util.List;
  */
 public class Test {
 
-    private void test() {
+    public static void main(String[] args){
+        testbc(1,(str,num) -> test(str,num));
+        testbf(1,(typ1,typ2) -> testString(typ1,typ2));
     }
 
-    public static int binarySearch(int[] nums, int target) {
+   public static void testbc(Integer type, BiConsumer<String,Integer> consumer){
+       if (type.equals(1)){
+           consumer.accept("test",111);
+       }else {
+           System.out.println("未执行");
+       }
+   }
 
-        int low = 0;
-        int high = nums.length - 1;
-        int middle = 0;
+   public static void test(String str,Integer ints){
+       System.out.println(str + "===" + ints);
+   }
 
-        if (target < nums[low]) {
-            return nums[low];
-        }
-        if (target > nums[high]) {
-            return nums[high];
-        }
-        if (low > high) {
-            return -1;
-        }
+   public static void testbf(Integer t, BiFunction<String,Integer,String> cusFunction){
+       if (t.equals(1)){
+           System.out.println(cusFunction.apply("tss",333));
+       }else {
+           System.out.println("未执行");
+       }
+   }
 
-        while (low <= high) {
-            middle = (low + high) / 2;
-            if (nums[middle] > target) {
-                if (middle > 0 && nums[middle - 1] < target) {
-                    return (Math.abs(target - nums[middle]) - Math.abs(target - nums[middle - 1])) < 0 ? middle : middle - 1;
-                }
-                high = middle - 1;
-            } else if (nums[middle] < target) {
-                if (middle < nums.length - 1 && nums[middle + 1] > target) {
-                    return (Math.abs(target - nums[middle]) - Math.abs(target - nums[middle + 1])) < 0 ? middle : middle + 1;
-                }
-                low = middle + 1;
-            } else {
-                return middle;
-            }
-        }
-
-        return -1;
-    }
-
-    public static void main(String[] args) {
-        List<String> a = new ArrayList();
-        a.add("1");
-        a.add("2");
-        a.add("3");
-        a.add("4");
-        List<String> b = new ArrayList();
-        b.add("5");
-        b.add("6");
-        b.add("3");
-        b.add("4");
-        // a.removeAll(b);
-        // a.addAll(b);
-        // System.out.println(a);
-        System.out.println(mergeAlias(a,b));
-    }
-    public static List<String> mergeAlias(List<String> a, List<String> b){
-        if (a == null){
-            return b;
-        }
-        if (b == null){
-            return a;
-        }
-        a.removeAll(b);
-        a.addAll(b);
-        return a;
-    }
-
+   public static String testString(String ts,Integer tt){
+       return ts + "$$$" + tt;
+   }
 }

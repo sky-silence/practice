@@ -11,6 +11,9 @@ public class No504ConvertToBase7 {
 
     public static void main(String[] args) {
         System.out.println(convertToBase7(-8));
+
+        String a = "a";
+        a.indexOf("B");
     }
 
     public static String convertToBase7(int num) {
